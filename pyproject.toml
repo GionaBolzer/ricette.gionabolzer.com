@@ -1,0 +1,14 @@
+[project]
+name = "ricette.gionabolzer.com"
+version = "1.0.0"
+description = "sito per ricette"
+dependencies = [
+    "flask",
+]
+
+[tool.flit.module]
+name = "src" 
+
+[build-system]
+requires = ["flit_core"]
+build-backend = "flit_core.buildapi"
