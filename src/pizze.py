@@ -32,7 +32,7 @@ def register():
     
     # Autolisi
     farina_autolisi = round(500/6*n_pizze,0)
-    acqua_autolisi = round(250/6*n_pizze,2)
+    acqua_autolisi = round(250/6*n_pizze,0)
     ora_autolisi = (ora_cena_obj + timedelta(hours=19)).strftime('%H:%M')
 
     # Chiusura
