@@ -24,8 +24,9 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from . import index
+    from . import index,pizze
     app.register_blueprint(index.bp)
+    app.register_blueprint(pizze.bp)
 
 
     return app

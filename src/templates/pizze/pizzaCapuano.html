@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{titolo}}</title>
+</head>
+<body>
+    <h3><a href="/">Back Home</a></h2>
+    <h1>{{titolo}}</h1>
+    <p>
+     Video ricetta <a href="{{video}}" target="_blank">QUI</a>        
+    </p>
+    <h2>Inserire dati</h2>
+    <form action="" method="get">
+        <label for="n_pizze">Numero di pizze</label>
+        <input type="number" id="n_pizze" name="pizze" placeholder="Enter numero pizze"  >
+        <br><br>
+        <label for="ora">Ora cena:</label>
+        <input type="time" id="ora" name="ora" placeholder="Enter delivery hours" >
+        <br><br>
+        <button type="submit">Conferma</button>
+    </form>
+    <h2>Ricetta</h2>
+    <p>Numero pizze: {{n_pizze}}</p>
+    <p>Ora cena: {{ora_cena}}</p>
+    <h2>Biga</h2>
+    <p>Alle {{ora_cena}} del giorno precedente alla cena preparare:</p>
+    <h3>Ingredienti</h3>
+    <ul>
+        <li>Farina: {{farina_biga}} g</li>
+        <li>Acqua: {{acqua_biga}} g</li>
+        <li>Lievito fresco: {{lievito_biga}} g</li>
+    </ul>
+    <h3>Procedimento</h3>
+    <ol>
+        <li>Sciogliere il lievito in acqua</li>
+        <li>Unire farina ed impastare a mano grossolanamente</li>
+        <li>Coprire e lasciare a temperatura ambiente 1h e 30 min</li>
+        <li>Alle {{ora_biga_frigo}} mettere biga in frigo insieme a {{(acqua_autolisi+acqua_chiusura) | round(2)}} g di acqua</li>
+    </ol>
+    <h2>Autolisi</h2>
+    <p>Alle {{ora_autolisi}} del giorno della cena preparare:</p>
+    <h3>Ingredienti</h3>
+    <ul>
+        <li>Farina: {{farina_autolisi}} g</li>
+        <li>Acqua: prendere {{acqua_autolisi}} g da quella in frigo</li>
+    </ul>
+    <h3>Procedimento</h3>
+    <ol>
+        <li>Impastare acqua + farina</li>
+        <li>Mettere 30 min in frigo</li>
+    </ol>
+    <h2>Chiusura</h2>
+    <p>Alle {{ora_chiusura}} del giorno della cena preparare:</p>
+    <h3>Ingredienti</h3>
+    <ul>
+        <li>Acqua: prendere {{acqua_chiusura}} g da quella in frigo</li>
+        <li>Lievito fresco: {{lievito_chiusura}} g</li>
+        <li>Sale: {{sale_chiusura}} g</li>
+    </ul>
+    <h3>Procedimento</h3>
+    <ol>
+        <li>Spezzare biga ed autolisi, mettere lievito e {{(acqua_chiusura/3)|round(0)}} g di acqua</li>
+        <li>Impastare con foglia, ed aggiungere poca acqua alla volta a filo</li>
+        <li>In circa 20 minuti l'acqua dovrebbe essere finita, inserire il sale ed impastare fino assorbimento</li>
+        <li>Creare {{n_pizze}} panetti da 280g e mettere in frigo fino all'ora di cena = {{ora_cena}}</li>
+    </ol>
+</body>
+</html>

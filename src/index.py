@@ -4,4 +4,7 @@ bp = Blueprint('index', __name__, url_prefix='/')
 
 @bp.route('/', methods=['GET'])
 def register():
-    return "ciao"
+    pizze = {
+        "Pizza Contemporana alta idratazione in planetaria":'pizzaCapuano',
+    }
+    return render_template('index.html',pizze=pizze)

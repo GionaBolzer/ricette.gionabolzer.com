@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ricette</title>
 </head>
 <body>
-    
+    <h1>Ricette</h2>
+    <h2>Pizze</h2>
+    <ul>
+{% for pizza,link in pizze.items() %}
+<li><a href="pizze/{{link}}">{{pizza}}</a></li>
+{% endfor %}
+    </ul>
 </body>
 </html>
