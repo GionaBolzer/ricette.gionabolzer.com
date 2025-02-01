@@ -4,7 +4,7 @@ from datetime import datetime,timedelta
 bp = Blueprint('pizze', __name__, url_prefix='/pizze')
 
 @bp.route('/pizzaCapuano', methods=['GET'])
-def register():
+def pizzaCapuano():
     # numero pizze e ora di cena
     
     n_pizze = request.args.get('pizze',1) 
@@ -55,6 +55,55 @@ def register():
                            farina_autolisi=farina_autolisi,
                            acqua_autolisi=acqua_autolisi,
                            ora_autolisi=ora_autolisi,
+                           acqua_chiusura=acqua_chiusura,
+                           lievito_chiusura=lievito_chiusura,
+                           sale_chiusura=sale_chiusura,
+                           ora_chiusura=ora_chiusura
+                        )
+
+
+@bp.route('/pizzaCanotto', methods=['GET'])
+def pizzaCanotto():
+    # numero pizze e ora di cena
+    
+    n_pizze = request.args.get('pizze',1) 
+    ora_cena = request.args.get('ora',"19:30")
+    
+    if n_pizze == "":
+        n_pizze = int(1)
+    if int(n_pizze) <= 0:
+        return "404"
+    else:
+        n_pizze =int(n_pizze)
+    if ora_cena == "":
+        ora_cena = "19:30"
+
+    ora_cena_obj = datetime.strptime(ora_cena, '%H:%M')
+
+    titolo = "Pizza Canotto di Vincenzo Abbate"
+    video = "https://www.youtube.com/watch?v=RffhpDygcsg"
+    
+    # BIGA
+    farina_biga = round(1000/6*n_pizze,0)
+    acqua_biga = round(500/6*n_pizze,0)
+    lievito_biga = round(7/6*n_pizze,2)
+
+    # Chiusura
+    acqua_chiusura = round(250/6*n_pizze,0)
+    lievito_chiusura = round(4/6*n_pizze,2)
+    sale_chiusura = round(30/6*n_pizze,0)
+    ora_chiusura = (ora_cena_obj).strftime('%H:%M')
+
+    
+
+    return render_template('pizze/pizzaCanotto.html',
+                           titolo=titolo,
+                           video=video,
+                           n_pizze=n_pizze,
+                           ora_cena=ora_cena,
+                           farina_biga=farina_biga,
+                           acqua_biga=acqua_biga,
+                           lievito_biga=lievito_biga,
                            acqua_chiusura=acqua_chiusura,
                            lievito_chiusura=lievito_chiusura,
                            sale_chiusura=sale_chiusura,

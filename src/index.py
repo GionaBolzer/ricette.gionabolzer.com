@@ -6,5 +6,6 @@ bp = Blueprint('index', __name__, url_prefix='/')
 def register():
     pizze = {
         "Pizza Contemporana alta idratazione in planetaria":'pizzaCapuano',
+        "Pizza Canotto di Vincenzo Abbate":'pizzaCanotto',
     }
     return render_template('index.html',pizze=pizze)
