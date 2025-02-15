@@ -3,6 +3,17 @@ from datetime import datetime,timedelta
 
 bp = Blueprint('pizze', __name__, url_prefix='/pizze')
 
+
+def checkIntParameter(parameters, default):
+    if parameters == "":
+        parameters = int(default)
+    if int(parameters) <= 0:
+        return "404"
+    else:
+        parameters =int(parameters)
+    return parameters
+
+    
 @bp.route('/pizzaCapuano', methods=['GET'])
 def pizzaCapuano():
     # numero pizze e ora di cena
@@ -107,5 +118,59 @@ def pizzaCanotto():
                            acqua_chiusura=acqua_chiusura,
                            lievito_chiusura=lievito_chiusura,
                            sale_chiusura=sale_chiusura,
+                           ora_chiusura=ora_chiusura
+                        )
+    
+
+
+@bp.route('/pizzaInTeglia', methods=['GET'])
+def pizzaInTeglia():
+    # numero pizze e ora di cena
+    
+    n_pizze = 1
+    n_teglie = request.args.get('n_teglie',1) 
+    larghezza = request.args.get('larghezza',30) 
+    lunghezza = request.args.get('lunghezza',40) 
+    ora_cena = request.args.get('ora',"19:30")
+    
+    n_teglie = checkIntParameter(n_teglie, 1)
+    larghezza = checkIntParameter(larghezza, 40)
+    lunghezza = checkIntParameter(lunghezza, 30)
+    
+    if n_teglie == "404" or larghezza == "404" or lunghezza == "404":
+        return "404"
+    
+    if ora_cena == "":
+        ora_cena = "19:30"
+
+    ora_cena_obj = datetime.strptime(ora_cena, '%H:%M')
+
+    titolo = "Pizza in teglia ad alta idratazione"
+    video = "https://www.youtube.com/watch?v=d7RrRqeiIZY"
+    
+    peso_panetto = (larghezza*lunghezza)/2
+    peso_totale = peso_panetto*n_teglie
+
+    # BIGA
+    farina = round(0.555555*peso_totale,0)
+    acqua = round(0.444444*peso_totale,0)
+    lievito = round(0.003888*peso_totale,2)
+    sale = round(0.01388*peso_totale,0)
+    print(f"sale= {sale}")
+    ora_chiusura = (ora_cena_obj - timedelta(hours=4)).strftime('%H:%M')
+
+
+    return render_template('pizze/pizzaInTeglia.html',
+                           titolo=titolo,
+                           video=video,
+                           n_teglie=n_teglie,
+                           larghezza=larghezza,
+                           lunghezza=lunghezza,
+                           ora_cena=ora_cena,
+                           farina=farina,
+                           acqua=acqua,
+                           lievito=lievito,
+                           sale=sale,
+                           peso_panetto=peso_panetto,
                            ora_chiusura=ora_chiusura
                         )

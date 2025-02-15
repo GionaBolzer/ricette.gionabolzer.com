@@ -7,5 +7,6 @@ def register():
     pizze = {
         "Pizza Contemporana alta idratazione in planetaria":'pizzaCapuano',
         "Pizza Canotto di Vincenzo Abbate":'pizzaCanotto',
+        "Pizza in teglia ad alta idratazione": 'pizzaInTeglia'
     }
     return render_template('index.html',pizze=pizze)

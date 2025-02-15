@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{titolo}}</title>
+    <style>
+        body {
+      font-family:'Lucida Console', monospace;
+      font-size: 18px;
+      color: #111;
+      background-color: white;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 50px;
+      box-sizing: border-box;
+    }
+    </style>
+</head>
+<body>
+    <h3><a href="/">Back Home</a></h2>
+    <h1>{{titolo}}</h1>
+    <p>
+     Video ricetta <a href="{{video}}" target="_blank">QUI</a>        
+    </p>
+    <h2>Inserire dati</h2>
+    <form action="" method="get">
+        <label for="n_teglie">Numero di teglie</label>
+        <input type="number" id="n_teglie" name="n_teglie" placeholder="Enter numero teglie"  >
+        <br><br>
+        <label for="larghezza">Larghezza teglia in cm</label>
+        <input type="number" id="larghezza" name="larghezza" placeholder="Enter larghezza in cm"  >
+        <br><br>
+        <label for="lunghezza">Lunghezza teglia in cm</label>
+        <input type="number" id="lunghezza" name="lunghezza" placeholder="Enter lunghezza in cm"  >
+        <br><br>
+        <label for="ora">Ora cena:</label>
+        <input type="time" id="ora" name="ora" placeholder="Enter delivery hours" >
+        <br><br>
+        <button type="submit">Conferma</button>
+    </form>
+    <h2>Ricetta</h2>
+    <p>Numero di teglie: {{n_teglie}}</p>
+    <p>Larghezza teglia: {{larghezza}} cm</p>
+    <p>Lunghezza teglia: {{lunghezza}} cm</p>
+    <p>Ora cena: {{ora_cena}}</p>
+    <h2>Impasto</h2>
+    <p>Il giorno precedente alla cena, alle {{ora_cena}} preparare:</p>
+    <h3>Ingredienti</h3>
+    <ul>
+        <li>Farina: {{farina}} g</li>
+        <li>Acqua fredda: {{acqua}} g</li>
+        <li>Lievito fresco: {{lievito}} g</li>
+        <li>Sale: {{sale}} g</li>
+    </ul>
+    <h3>Procedimento</h3>
+    <ol>
+        <li>Sciogliere il lievito in {{acqua*0.5 | round(2)}} g acqua</li>
+        <li>Unire alla farina ed impastare con foglia, aggiungendo poca acqua alla volta a filo</li>
+        <li>In circa 20 minuti l'acqua dovrebbe essere finita, inserire il sale ed impastare fino assorbimento</li>
+        <li>Coprire e lasciare 30 min a temperatura ambiente, in seguito metter in frigo</li>
+    </ol>
+    <h3>Chiusura</h3>
+    Alle {{ora_chiusura}} della giorno della cena:
+    <ol>
+        <li>Creare {{n_teglie}} panetti da {{peso_panetto}} g, coprire e lasciare a temperatura ambiente fino ora cena = {{ora_cena}}</li>
+    </ol>
+</body>
+</html>
